@@ -34,4 +34,15 @@ describe DockingStation do
     35.times{docking_station.dock Bike.new}
     expect { docking_station.dock Bike.new}.to raise_error 'Station full'
   end
+
+  #same as feature test - put one broken bike into station, try to release, raise error
+  
+
+  #given 15 bikes in station - 14 are broken, code has to find one working bike to release.
+
+  #given 15 bikes in station - 12 are working and 3 are not - find and release a working bike
+
+
+
+
 end
