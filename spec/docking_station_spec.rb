@@ -54,11 +54,16 @@ describe DockingStation do
     expect(anotherbike).to be_working
   end
 
-
-
   #given 15 bikes in station - 12 are working and 3 are not - find and release a working bike
-
-
-
-
+it 'in a station with 12 working, 3 not, find and release working bike' do
+subject.bike_capacity = 15
+12.times do
+  subject.dock Bike.new
+end
+3.times do
+  subject.dock Bike.new.report_broken
+end
+anotherbike = subject.release_bike
+expect(anotherbike).to be_working
+end
 end
