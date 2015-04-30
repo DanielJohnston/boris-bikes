@@ -19,4 +19,19 @@ describe DockingStation do
     end
   end
 
+  it 'raises error when docking station is full' do
+    20.times{subject.dock Bike.new}
+    expect {subject.dock Bike.new}.to raise_error 'Station full'
+  end
+
+  #expects method bike_capacity= to give result
+  it { is_expected.to respond_to :bike_capacity= }
+
+  #test that if we change capacity to 35, then we can store 35 bikes then return error for 36th
+  it 'stores 35 bikes if capacity changed to 35, then raises error on 36th' do
+    docking_station = DockingStation.new
+    docking_station.bike_capacity = 35
+    35.times{docking_station.dock Bike.new}
+    expect { docking_station.dock Bike.new}.to raise_error 'Station full'
+  end
 end
