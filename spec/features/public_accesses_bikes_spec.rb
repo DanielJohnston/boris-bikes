@@ -20,4 +20,5 @@ feature 'user takes working bike from docking station' do
     docking_station.dock bike
     expect { docking_station.release_bike }.to raise_error 'No bikes available'
   end
+
 end

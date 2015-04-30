@@ -29,14 +29,19 @@ describe DockingStation do
 
   #test that if we change capacity to 35, then we can store 35 bikes then return error for 36th
   it 'stores 35 bikes if capacity changed to 35, then raises error on 36th' do
-    docking_station = DockingStation.new
-    docking_station.bike_capacity = 35
-    35.times{docking_station.dock Bike.new}
-    expect { docking_station.dock Bike.new}.to raise_error 'Station full'
+    subject.bike_capacity = 35
+    35.times{subject.dock Bike.new}
+    expect { subject.dock Bike.new}.to raise_error 'Station full'
   end
 
   #same as feature test - put one broken bike into station, try to release, raise error
-  
+  it 'will not release a broken bike if it is the only one in docking station' do
+    bike = Bike.new
+    bike.report_broken
+    subject.dock bike
+    expect { subject.release_bike}.to raise_error 'No bikes available'
+  end
+
 
   #given 15 bikes in station - 14 are broken, code has to find one working bike to release.
 

@@ -9,6 +9,8 @@ describe Bike do
   end
 
   it 'it is working if not reported broken' do
-    expect(subject).to be_working 
+    expect(subject).to be_working
   end
+  
+
 end

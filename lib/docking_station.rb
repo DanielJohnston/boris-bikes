@@ -7,7 +7,7 @@ class DockingStation
     @bikes = []
   end
   def release_bike
-    fail 'No bikes available' if empty?
+    fail 'No bikes available' if empty? || @bikes.last.broken?
     @bikes.pop
   end
   def dock(bike)
