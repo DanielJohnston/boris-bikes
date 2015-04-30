@@ -42,8 +42,19 @@ describe DockingStation do
     expect { subject.release_bike}.to raise_error 'No bikes available'
   end
 
-
   #given 15 bikes in station - 14 are broken, code has to find one working bike to release.
+  it 'in a station with a capacity of 15 bikes, it will find the one working bike ' do
+    subject.bike_capacity = 15
+    bike = Bike.new
+    subject.dock bike
+    otherbike = Bike.new
+    otherbike.report_broken
+    14.times{subject.dock(otherbike)}
+    anotherbike = subject.release_bike
+    expect(anotherbike).to be_working
+  end
+
+
 
   #given 15 bikes in station - 12 are working and 3 are not - find and release a working bike
 
